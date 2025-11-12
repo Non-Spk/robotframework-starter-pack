@@ -1,0 +1,25 @@
+profiles:
+  desktop_chrome:
+    browser: chromium
+    headless: true
+    context:
+      viewport:
+        width: 1280
+        height: 720
+      timezoneId: Asia/Bangkok
+    args:
+      - --disable-dev-shm-usage
+      - --disable-gpu
+  mobile_emulation:
+    browser: chromium
+    headless: true
+    device: Pixel 5
+    context:
+      locale: th-TH
+  webkit_preview:
+    browser: webkit
+    headless: false
+    context:
+      viewport:
+        width: 1280
+        height: 800

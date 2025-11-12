@@ -1,0 +1,19 @@
+language:
+  en: en
+  th: th
+
+api_health_check:
+  env: local
+  session_alias: health_api
+  language_key: en
+
+web_sample_smoke:
+  env: local
+  language_key: en
+
+mobile_sample_smoke:
+  env: local
+  device_profile: android.pixel_8
+  app_profile: android_demo
+  run_mobile_tests: false
+  language_key: th

@@ -1,6 +1,5 @@
 *** Settings ***
-Documentation    Setting impot path
-Resource    ${CURDIR}/../../resources/import.resource
+Documentation    General-purpose reusable keywords shared across platforms.
 
 
 *** Keywords ***

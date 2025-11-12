@@ -1,6 +1,5 @@
 *** Settings ***
-Documentation    Setting impot path
-Resource    ${CURDIR}/../../resources/import.resource
+Documentation    Shared database helper keywords.
 
 
 *** Keywords ***
@@ -64,7 +63,7 @@ Fetch all records
     ${result}=    DatabaseLibrary.Query    ${query}    alias=${alias}    parameters=${args}
     RETURN    ${result}
 
-Verify Record Exists
+Verify record exists
     [Documentation]
     ...    Verifies that a record exists in the database for the given query.
     ...    Fails if no record is found.
@@ -72,7 +71,7 @@ Verify Record Exists
     ${result}=    DatabaseLibrary.Query    ${query}    alias=${alias}    parameters=${args}
     BuiltIn.Should Not Be Empty    ${result}    No records found for query: ${query}
 
-Verify Value In Result
+Verify value in result
     [Documentation]
     ...    Verifies that a specific value exists in the result set from the query.
     ...    Fails if the expected value is not found.
