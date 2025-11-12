@@ -7,6 +7,7 @@ Library    DateTime
 Library    OperatingSystem
 Library    Process
 Library    RequestsLibrary
+Library    SeleniumLibrary
 Library    String
 
 
@@ -15,5 +16,6 @@ Resource    ${CURDIR}/../keywords/common/common.resource
 Resource    ${CURDIR}/../keywords/common/common_api.resource
 Resource    ${CURDIR}/../keywords/common/common_app.resource
 Resource    ${CURDIR}/../keywords/common/common_database.resource
-Resource    ${CURDIR}/../keywords/common/common_web.resource
+Resource    ${CURDIR}/../keywords/common/common_web_browser.resource
+Resource    ${CURDIR}/../keywords/common/common_web_selenium.resource
 
