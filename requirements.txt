@@ -1,0 +1,7 @@
+robotframework
+robotframework-appiumlibrary
+robotframework-browser
+robotframework-databaselibrary
+robotframework-requests
+robotframework-robocop
+PyYAML
