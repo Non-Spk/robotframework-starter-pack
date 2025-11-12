@@ -219,3 +219,6 @@ browser/
 results/
 *.log
 *.tmp
+
+# Custom library cache/
+__pycache__/
