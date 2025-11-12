@@ -4,6 +4,25 @@ Resource    ${CURDIR}/../../resources/import.resource
 
 
 *** Keywords ***
+Build encoded url
+    [Documentation]
+    ...    Build encoded url from base url, username and password
+    ...    Example:
+    ...            base url = http://localhost:8080
+    ...            username = admin
+    ...            password = 1234@5678
+    ...    Result_url_before_use_this_keyword:
+    ...            http://username:password_with_encoded@localhost:8080
+    ...    Result_url_after_use_this_keyword:
+    ...            http://admin:1234%405678@localhost:8080
+    [Arguments]    ${base_url}    ${username}    ${password}
+    ${scheme}=    BuiltIn.Evaluate    'https' if "${base_url}".startswith('https://') else 'http'
+    ${base_url_no_scheme}=    BuiltIn.Evaluate    "${base_url}".replace(f"{${scheme}}://", '')
+    ${encoded_username}=    BuiltIn.Evaluate    urllib.parse.quote("${username}", safe='')    modules=urllib.parse
+    ${encoded_password}=    BuiltIn.Evaluate    urllib.parse.quote("${password}", safe='')    modules=urllib.parse
+    ${result}=    BuiltIn.Evaluate    '${scheme}://${encoded_username}:${encoded_password}@${base_url_no_scheme}'
+    RETURN    ${result}
+
 Convert ce to be year
     [Documentation]
     ...    Converts a CE (AD) year to Buddhist Era (BE).
@@ -11,6 +30,23 @@ Convert ce to be year
     [Arguments]    ${CE_year}
     ${BE_year}=    BuiltIn.Evaluate    int(${CE_year}) + 543
     RETURN    ${BE_year}
+
+Download file from url link and run curl process
+    [Documentation]
+    ...    You must first get the actual URL from the link and store it in a variable (e.g., link_download)
+    ...    before passing it to your download keyword. You should not pass the XPath directly to the download keyword;
+    ...    only the real URL should be passed.
+    ...    cwd = for fix dir download path.
+    ...    -s   --silent = Do not show progress meter or messages during download.
+    ...    -S   --show-error = When used with -s, still shows error messages if they occur.
+    ...    -L   --location = Follow HTTP redirects automatically.
+    ...    -O   --remote-name = Save the file using the original filename from the URL.
+    ...    -J   --remote-header-name When used with -O, use the filename from the server's,
+    ...    Content-Disposition header if available.
+    [Arguments]    ${link_download}    ${download_dir}
+    OperatingSystem.Create Directory    ${download_dir}
+    ${result}=    Process.Run Process    curl    -sS    -L    -O    -J    ${link_download}    cwd=${download_dir}
+    RETURN    ${result.stdout}
 
 Generate random string
     [Documentation]    Generates a random string of given length using letters and digits.
