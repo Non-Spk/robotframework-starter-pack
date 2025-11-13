@@ -10,8 +10,10 @@ Library    RequestsLibrary
 Library    SeleniumLibrary
 Library    String
 
+# CUSTOM LIBRARIES
+Library    ${CURDIR}/library/string_utils.py    WITH NAME    StringUtils
 
-# common_keywords
+# COMMON KEYWORDS AND HELPERS
 Resource    ${CURDIR}/../keywords/common/common.resource
 Resource    ${CURDIR}/../keywords/common/common_api.resource
 Resource    ${CURDIR}/../keywords/common/common_app.resource
@@ -19,3 +21,5 @@ Resource    ${CURDIR}/../keywords/common/common_database.resource
 Resource    ${CURDIR}/../keywords/common/common_web_browser.resource
 Resource    ${CURDIR}/../keywords/common/common_web_selenium.resource
 
+# COMMON PAGES KEYWORD AND HELPERS
+Resource    ${CURDIR}/../keywords/pages/support/runtime_features.resource

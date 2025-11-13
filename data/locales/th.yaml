@@ -1,0 +1,14 @@
+general:
+  greeting: สวัสดีจากชุดทดสอบอัตโนมัติ
+  unsupported_language: ไม่รองรับภาษาที่เลือก
+web:
+  sample_page:
+    heading: โดเมนตัวอย่าง
+    body_copy: โดเมนนี้ใช้สำหรับตัวอย่างในการอธิบายและไม่ควรใช้จริง
+mobile:
+  login:
+    title: แอปตัวอย่าง (TH)
+    button_text: ดำเนินการต่อ
+api:
+  health:
+    success: ระบบ API พร้อมให้บริการ

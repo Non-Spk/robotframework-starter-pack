@@ -1,0 +1,30 @@
+devices:
+  android:
+    pixel_8:
+      remote_url: http://localhost:4723/wd/hub
+      automation_name: UiAutomator2
+      device_name: Pixel_8
+      platform_name: Android
+      platform_version: '15'
+    samsung_s23:
+      remote_url: http://localhost:4723/wd/hub
+      automation_name: UiAutomator2
+      device_name: Galaxy_S23
+      platform_name: Android
+      platform_version: '14'
+  ios:
+    iphone_15:
+      remote_url: http://localhost:4723/wd/hub
+      automation_name: XCUITest
+      device_name: iPhone 15
+      platform_name: iOS
+      platform_version: '17'
+apps:
+  android_demo:
+    apk_path: apps/android-demo.apk
+    permission: true
+    reset: false
+  ios_demo:
+    apk_path: apps/iOS-demo.app
+    permission: true
+    reset: false

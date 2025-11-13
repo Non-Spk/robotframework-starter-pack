@@ -1,6 +1,5 @@
 *** Settings ***
-Documentation    Setting impot path
-Resource    ${CURDIR}/../../resources/import.resource
+Documentation    General-purpose reusable keywords shared across platforms.
 
 
 *** Keywords ***
@@ -76,6 +75,12 @@ Get os platform
     ${system}=    String.Convert to lower case    ${platform}
     RETURN    ${system}
 
+Get type of arguments
+    [Documentation]    Returns the Python type name of the given argument.
+    [Arguments]    ${argus}
+    ${type}=    StringUtils.Get Type Name    value=${argus}
+    RETURN    ${type}
+
 Log to console
     [Documentation]
     ...    Logs a message to the console or log.html with a specified level.
@@ -87,6 +92,15 @@ Log to console
     ...    - ERROR: shown in terminal, debug console, log.html, and report.html
     [Arguments]    ${message}    ${level}=INFO
     BuiltIn.Log    ${message}    ${level}
+
+Parse date
+    [Documentation]
+    ...    Converts a string date into a datetime object.
+    ...    Can be extended to support multiple date formats and Thai Buddhist year.
+    [Arguments]    ${value}
+    ${value}=    BuiltIn.Set Variable    ${value.strip()}
+    ${dt}=    StringUtils.Parse date    value=${value}
+    RETURN    ${dt}
 
 Should be equal ignore case
     [Documentation]    Verifies that two strings are equal ignoring case.

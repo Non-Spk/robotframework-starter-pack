@@ -1,0 +1,14 @@
+general:
+  greeting: Hello from the automation suite.
+  unsupported_language: Unsupported language fallback.
+web:
+  sample_page:
+    heading: Example Domain
+    body_copy: This domain is for use in illustrative examples.
+mobile:
+  login:
+    title: Demo App (EN)
+    button_text: Continue
+api:
+  health:
+    success: API is reachable

@@ -1,0 +1,33 @@
+web:
+  local:
+    base_url: https://example.com
+    locale: en
+    browser_profile: desktop_chrome
+    default_user:
+      username: demo@example.com
+      password: change_me
+  staging:
+    base_url: https://staging.example.com
+    locale: th
+    browser_profile: desktop_chrome
+    default_user:
+      username: staging.user@example.com
+      password: change_me
+mobile:
+  local:
+    locale: en
+    device_profile: android.pixel_8
+    app_profile: android_demo
+  staging:
+    locale: th
+    device_profile: ios.iphone_15
+    app_profile: ios_demo
+api:
+  local:
+    base_url: https://httpbin.org
+    timeout: 30
+    verify: true
+  staging:
+    base_url: https://httpbin.org
+    timeout: 30
+    verify: false

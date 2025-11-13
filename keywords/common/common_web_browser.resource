@@ -1,6 +1,5 @@
 *** Settings ***
-Documentation    Setting impot path
-Resource    ${CURDIR}/../../resources/import.resource
+Documentation    Shared Browser-library keywords for web automation.
 
 
 *** Keywords ***
@@ -96,15 +95,25 @@ Input text and verify
 
 Open new browser
     [Documentation]
-    ...    Open new browser with default headless is ${False} base on BrowserLibrary
+    ...    Opens a new Playwright browser with optional device emulation or custom context options.
     ...    select device size in https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/deviceDescriptorsSource.json
-    [Arguments]    ${browser}=chromium    ${on_headless}=${False}    ${device}=${None}    ${args}=${None}
-    ${browser}=    Browser.New Browser    ${browser}    ${on_headless}    args=${args}
+    [Arguments]    ${browser}=chromium    ${on_headless}=${False}    ${device}=${None}    ${args}=${None}    ${context}=${None}
+    ${browser_id}=    Browser.New Browser    ${browser}    ${on_headless}    args=${args}
+    ${device_context}=    BuiltIn.Set Variable    ${None}
     IF    ${device} is not None
-        ${device}=    Browser.Get Device    ${device}
-        Browser.New Context    &{device}
+        ${device_context}=    Browser.Get Device    ${device}
     END
-    RETURN    ${browser}
+    ${combined_context}=    BuiltIn.Evaluate
+    ...    {**(device_ctx or {}), **(extra_ctx or {})}
+    ...    device_ctx=${device_context}
+    ...    extra_ctx=${context}
+    ${has_context}=    BuiltIn.Evaluate    bool(payload)    payload=${combined_context}
+    IF    ${has_context}
+        Browser.New Context    &{combined_context}
+    ELSE
+        Browser.New Context
+    END
+    RETURN    ${browser_id}
 
 Open new page
     [Documentation]    Open new page in browser base on BrowserLibrary

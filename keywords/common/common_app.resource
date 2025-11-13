@@ -1,6 +1,5 @@
 *** Settings ***
-Documentation    Setting impot path
-Resource    ${CURDIR}/../../resources/import.resource
+Documentation    Shared mobile/Appium keywords for native app automation.
 
 
 *** Keywords ***
@@ -166,7 +165,7 @@ Swipe until element visible
         AppiumLibrary.Wait Until Page Contains Element    ${container}    ${swipe_config['timeout']}
         AppiumLibrary.Wait Until Element Is Visible    ${container}    ${swipe_config['timeout']}
         WHILE    ${swipe_count} < ${swipe_config['max_swipes']}
-            Swipe In Direction
+            Swipe in direction
             ...    ${container}
             ...    ${swipe_config}
             ${is_visible}=    BuiltIn.Run Keyword And Return Status
